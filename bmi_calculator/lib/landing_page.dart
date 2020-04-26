@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/main.dart';
-import 'package:bmi_calculator/buttons.dart';
+import 'package:bmi_calculator/buttons.dart' show BottomButton;
 import 'package:bmi_calculator/result_page.dart';
 import 'package:bmi_calculator/default_card.dart';
 import 'package:bmi_calculator/default_theme.dart';
@@ -132,7 +132,7 @@ class _LandingPageState extends State<LandingPage> {
             Expanded(
               child: BottomButton(
                 label: 'CALCULATE',
-                onPressed: () {
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ResultPage(

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/main.dart';
-import 'package:bmi_calculator/buttons.dart';
+import 'package:bmi_calculator/buttons.dart' show BottomButton;
 import 'package:bmi_calculator/default_card.dart';
 import 'package:bmi_calculator/default_theme.dart';
 
@@ -49,7 +49,7 @@ class ResultPage extends StatelessWidget {
             Expanded(
               child: BottomButton(
                 label: 'RE-CALCULATE',
-                onPressed: () {
+                onTap: () {
                   Navigator.pop(context);
                 },
               ),
