@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/default_theme.dart';
+import 'package:bmi_calculator/themes/default_theme.dart';
 
 class RoundIconButton extends StatelessWidget {
   final Function onPressed;

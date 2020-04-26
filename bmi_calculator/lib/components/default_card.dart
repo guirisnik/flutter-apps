@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/buttons.dart';
-import 'package:bmi_calculator/default_theme.dart';
+import 'package:bmi_calculator/components/buttons.dart';
+import 'package:bmi_calculator/themes/default_theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum ButtonOption { increase, decrease }

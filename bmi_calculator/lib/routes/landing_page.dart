@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/main.dart';
-import 'package:bmi_calculator/buttons.dart' show BottomButton;
-import 'package:bmi_calculator/result_page.dart';
-import 'package:bmi_calculator/default_card.dart';
-import 'package:bmi_calculator/default_theme.dart';
+import 'package:bmi_calculator/routes/result_page.dart';
+import 'package:bmi_calculator/themes/default_theme.dart';
+import 'package:bmi_calculator/components/default_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:bmi_calculator/components/buttons.dart' show BottomButton;
 
 const int MAX_AGE = 130;
 const int MIN_AGE = 0;

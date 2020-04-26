@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/main.dart';
-import 'package:bmi_calculator/buttons.dart' show BottomButton;
-import 'package:bmi_calculator/default_card.dart';
-import 'package:bmi_calculator/default_theme.dart';
+import 'package:bmi_calculator/components/buttons.dart' show BottomButton;
+import 'package:bmi_calculator/components/default_card.dart';
+import 'package:bmi_calculator/themes/default_theme.dart';
 
 class ResultPage extends StatelessWidget {
   final double height;

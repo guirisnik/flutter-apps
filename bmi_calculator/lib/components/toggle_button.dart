@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/default_card.dart';
+import 'package:bmi_calculator/components/default_card.dart';
 
 class ToggleButton extends StatefulWidget {
   final IconData icon;

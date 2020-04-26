@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:bmi_calculator/landing_page.dart';
-import 'package:bmi_calculator/default_theme.dart';
+import 'package:bmi_calculator/routes/landing_page.dart';
+import 'package:bmi_calculator/themes/default_theme.dart';
 
 void main() => runApp(MyApp());
 
