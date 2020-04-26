@@ -32,20 +32,25 @@ class RoundIconButton extends StatelessWidget {
 
 class BottomButton extends StatelessWidget {
   final String label;
-  final Function onPressed;
+  final Function onTap;
 
-  BottomButton({ this.label, @required this.onPressed });
+  BottomButton({ this.label, @required this.onTap });
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      padding: EdgeInsets.only(bottom: 15),
-      child: Text(
-        label != null ? label : '',
-        style: DefaultTheme().defaultBottomButtonTextStyle,
+    return GestureDetector(
+      onTap: this.onTap,
+      child: Container(
+        color: DefaultTheme.defaultButtonColor,
+        padding: EdgeInsets.only(bottom: 15),
+        child: Center(
+          child: Text(
+            this.label != null ? this.label : '',
+            textAlign: TextAlign.center,
+            style: DefaultTheme().defaultBottomButtonTextStyle,
+          ),
+        ),
       ),
-      color: DefaultTheme.defaultButtonColor,
-      onPressed: this.onPressed
     );
   }
 }
