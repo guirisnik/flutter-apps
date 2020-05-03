@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/main.dart';
+import 'package:bmi_calculator/bmi_brain.dart';
 import 'package:bmi_calculator/routes/result_page.dart';
 import 'package:bmi_calculator/themes/default_theme.dart';
 import 'package:bmi_calculator/components/default_card.dart';
@@ -136,8 +137,10 @@ class _LandingPageState extends State<LandingPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ResultPage(
-                      height: this.cmHeight,
-                      weight: this.kgWeight,
+                      bmiBrain: BMIBrain(
+                        height: this.cmHeight,
+                        weight: this.kgWeight
+                      ),
                     ))
                   );
                 },
