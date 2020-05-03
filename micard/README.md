@@ -1,16 +1,15 @@
-# micard
+# MiCard
 
-A new Flutter project.
+MiCard is an app to show off a guest card.
 
-## Getting Started
+## Topics
 
-This project is a starting point for a Flutter application.
+Topics on this project include:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Hot reload / restart;
+- Container widget;
+- Column and Row widgets;
+- Widget properties;
+- Custom fonts;
+- Using Material icons;
+- Card widget;

@@ -1,16 +1,7 @@
 # magic8ballflutter
 
-A new Flutter project.
+Magic 8 Ball is an app that randomly throws an image of an 8 ball with a message when clicked.
 
-## Getting Started
+## Topics
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is the challenge after seeing the topics from Dicee.
