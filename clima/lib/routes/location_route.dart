@@ -33,16 +33,22 @@ class _LocationRouteState extends State<LocationRoute> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Icon(
-                    Icons.wb_sunny,
+                    this.widget.weather.getConditionIconData(),
                     color: Colors.amber,
                     size: 50.0,
                   ),
-                  Icon(
-                    Icons.wb_cloudy,
-                    color: Colors.blue,
-                    size: 50.0,
-                  ),
                 ],
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              Text(
+                'The current temperature in ${this.widget.weather.city} is ${this.widget.weather.temperature}°C',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  letterSpacing: 3.0,
+                ),
               ),
             ],
           ),
