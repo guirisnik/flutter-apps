@@ -18,21 +18,14 @@ class _LoadingRouteState extends State<LoadingRoute> {
   @override
   void initState() {
     super.initState();
-    this.getLocationData();
+    this.getWeatherData();
   }
 
-  void getLocationData() async {
-    setState(() {
-      _loadingState = true;
-      _loadingDescription = 'Getting current location...';
-    });
-    await location.getCurrentLocation();
-
+  void getWeatherData() async {
     setState(() {
       _loadingDescription = 'Getting weather data...';
     });
-    var didFetch = await weather.fetchWeatherData(
-      latitude: location.latitude, longitude: location.longitude);
+    var didFetch = await weather.getWeatherData();
 
     didFetch != null
       ? Navigator.push(
@@ -81,7 +74,7 @@ class _LoadingRouteState extends State<LoadingRoute> {
               _loadingState
                 ? SizedBox()
                 : RaisedButton(
-                  onPressed: () => getLocationData(),
+                  onPressed: () => getWeatherData(),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
