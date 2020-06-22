@@ -9,7 +9,7 @@ class LoadingRoute extends StatefulWidget {
 }
 
 class _LoadingRouteState extends State<LoadingRoute> {
-  final BitcoinData bitcoinData = BitcoinData();
+  final CoinData coinData = CoinData();
   bool _loadingState = true;
   String _loadingDescription = '';
 
@@ -23,13 +23,13 @@ class _LoadingRouteState extends State<LoadingRoute> {
     setState(() {
       _loadingDescription = 'Getting quotation data...';
     });
-    var didFetch = await bitcoinData.getBitcoinData();
+    var didFetch = await coinData.getCurrentRates();
 
     didFetch == true
       ? Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PriceRoute(bitcoinData: bitcoinData,)
+            builder: (context) => PriceRoute(coinData: coinData,)
           )
         )
       : setState(() {
@@ -53,7 +53,7 @@ class _LoadingRouteState extends State<LoadingRoute> {
                 )
                 : Icon(
                   Icons.sentiment_dissatisfied,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 100.0,
                 ),
               SizedBox(
