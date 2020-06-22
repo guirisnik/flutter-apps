@@ -1,26 +1,86 @@
 import 'coin_data.dart';
+import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PriceRoute extends StatefulWidget {
-  final BitcoinData bitcoinData;
+  final CoinData coinData;
 
-  const PriceRoute({this.bitcoinData});
+  const PriceRoute({this.coinData});
 
   @override
   _PriceRouteState createState() => _PriceRouteState();
 }
 
 class _PriceRouteState extends State<PriceRoute> {
-  List<Text> buildCurrencyList() {
-    return widget.bitcoinData.currencies.map<Text>((String currency) {
-      return Text(
+  String selectedCurrency;
+  Map<String, String> currentRate = {};
+
+  CupertinoPicker iosPicker() => CupertinoPicker(
+    itemExtent: 32.0, 
+    onSelectedItemChanged: (value) => 
+      setCurrencyRate(currency: CoinData.CURRENCIES[value]), 
+    children: CoinData.CURRENCIES.map<Text>((String currency) => Text(
         currency, 
         style: TextStyle(
-          color: Colors.white, 
-          fontSize: 18),
-        );
-    }).toList();
+          color: Colors.white
+        ),
+      )
+    ).toList()
+  );
+
+  DropdownButton androidPicker() => DropdownButton(
+    value: selectedCurrency,
+    style: TextStyle(color: Colors.black),
+    items: CoinData.CURRENCIES.map<DropdownMenuItem<String>>(
+      (String currency) => DropdownMenuItem(
+        child: Text(currency),
+        value: currency,
+      )
+    ).toList(), 
+    onChanged: (value) => setCurrencyRate(currency: value),
+  );
+
+  Widget getPicker() {
+    if (Platform.isIOS) return iosPicker();
+    return androidPicker();
+  }
+
+  Card getCoinCard({ String coinName }) => Card(
+    color: Colors.lightBlueAccent,
+    elevation: 5.0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(15),
+      child: Text(
+        '1 $coinName = ${currentRate[coinName]} $selectedCurrency',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+        ),
+      ),
+    ),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    setCurrencyRate(currency: CoinData.CURRENCIES[0]);
+  }
+
+  void setCurrencyRate({ @required String currency }) {
+    setState(() {
+      selectedCurrency = currency;
+      CoinData.COINS.forEach((coinName) {
+        currentRate[coinName] = widget.coinData.getQuotation(
+          coin: coinName, 
+          currency: selectedCurrency
+        ).toStringAsFixed(2);
+      });
+    });
   }
 
   @override
@@ -35,65 +95,19 @@ class _PriceRouteState extends State<PriceRoute> {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-                child: Card(
-                  color: Colors.lightBlueAccent,
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Text(
-                      '1 BTC = ? USD',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-                child: Card(
-                  color: Colors.lightBlueAccent,
-                  elevation: 5.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(15),
-                    child: Text(
-                      '1 BTC = ? BRL',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
+            children: CoinData.COINS.map<Padding>((coinName) => Padding(
+              padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+              child: getCoinCard(coinName: coinName),
+            )).toList(),
           ),
           Container(
+            height: 150.0,
             alignment: Alignment.center,
-            child: CupertinoPicker(
-              squeeze: 1.2,
-              itemExtent: 20.0, 
-              onSelectedItemChanged: (value) {
-                print(value);
-              }, 
-              children: buildCurrencyList(),
-            ),
             color: Colors.lightBlueAccent,
-            height: 130.0,
+            padding: EdgeInsets.only(bottom: 30.0),
+            child: getPicker(),
           ),
-        ],
+        ],        
       ),
     );
   }
