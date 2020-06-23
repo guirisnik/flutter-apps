@@ -1,4 +1,7 @@
-import 'routes/welcome_route.dart';
+import 'package:flash_chat/routes/welcome_route.dart';
+import 'package:flash_chat/routes/registration_route.dart';
+import 'package:flash_chat/routes/login_route.dart';
+import 'package:flash_chat/routes/chat_route.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +18,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: WelcomeRoute(),
+      initialRoute: WelcomeRoute.routeName,
+      routes: <String, WidgetBuilder>{
+        WelcomeRoute.routeName: (BuildContext context) => WelcomeRoute(),
+        LoginRoute.routeName: (BuildContext context) => LoginRoute(),
+        RegistrationRoute.routeName: (BuildContext context) => RegistrationRoute(),
+        ChatRoute.routeName: (BuildContext context) => ChatRoute(),
+      },
     );
   }
 }
