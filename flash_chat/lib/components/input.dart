@@ -5,28 +5,41 @@ class Input extends StatelessWidget {
   final String placeholder;
   final double borderWidth;
   final bool hideText;
+  final TextAlign textAlign;
+  final bool multiLine;
 
   Input({ 
     this.color,
     this.placeholder,
     this.borderWidth,
     this.hideText,
+    this.textAlign,
+    this.multiLine,
   });
   
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLines: this.multiLine == true ? null : 1,
       obscureText: this.hideText != null ? this.hideText : false,
-      textAlign: TextAlign.center,
+      textAlign: this.textAlign != null ? this.textAlign : TextAlign.center,
       style: TextStyle(
         color: Colors.black,
-        fontSize: 15.0,
+        fontSize: 18.0,
       ),
       cursorColor: this.color != null ? this.color : Colors.lightBlue,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        isDense: this.multiLine,
+        contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
         filled: true,
         fillColor: Colors.white,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: BorderSide(
+            color: this.color != null ? this.color : Colors.lightBlue,
+            width: this.borderWidth != null ? this.borderWidth : 2.0,
+          ),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50.0),
           borderSide: BorderSide(
