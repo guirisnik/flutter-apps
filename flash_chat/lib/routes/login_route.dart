@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flash_chat/components/input.dart';
 import 'package:flash_chat/components/buttons.dart';
+import 'package:flash_chat/components/logo.dart';
 
 class LoginRoute extends StatefulWidget {
+  static const routeName = '/login';
+
   @override
   _LoginRouteState createState() => _LoginRouteState();
 }
@@ -17,9 +20,9 @@ class _LoginRouteState extends State<LoginRoute> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              child: Image.asset('images/logo.png'),
-              height: 250.0,
+            Hero(
+              tag: Logo.heroTag,
+              child: Logo(size: 200.0,),
             ),
             SizedBox(height: 20.0,),
             Input(placeholder: 'Username',),
