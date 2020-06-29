@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class PillButton extends StatelessWidget {
   final Function onPress;
   final Color color;
   final String label;
   final Color textColor;
+  final bool isSubmitting;
 
   PillButton({
     @required this.onPress,
     this.label,
     this.color,
     this.textColor,
+    this.isSubmitting = false,
   });
 
   @override
@@ -30,13 +33,19 @@ class PillButton extends StatelessWidget {
           ]
         ),
         padding: EdgeInsets.all(13.0),
-        child: Text(
+        child: this.isSubmitting == false
+        ? Text(
           this.label != null ? this.label : '',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18.0,
             color: this.textColor != null ? this.textColor : Colors.white,
           )
+        )
+        : SpinKitRing(
+          color: Colors.white,
+          size: 16.0,
+          lineWidth: 2.0,
         ),
       ),
     );
